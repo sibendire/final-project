@@ -1,0 +1,83 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+h1 {
+  text-align: center;
+}
+
+label {
+  margin-top: 10px;
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="checkbox"] {
+  margin-top: 10px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.cancelbtn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  float: left;
+  margin-right: 10px;
+}
+
+.signupbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+}
+
+.signupbtn:hover,
+.cancelbtn:hover {
+  opacity: 0.8;
+}
+
+p {
+  font-size: 14px;
+  text-align: center;
+}
+
+a {
+  color: dodgerblue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
