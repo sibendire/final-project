@@ -1,9 +1,9 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-}
+} */
 
 .donation {
     width: 50%;
@@ -12,6 +12,18 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.paragraph{
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-bottom: 60px;
+    margin-left: 32px;
+    margin-right: 32px;
+    animation-duration: 12ms;
+    
 }
 
 .container {

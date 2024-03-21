@@ -16,13 +16,13 @@ body {
 
 
 .paragraph {
-    padding: 10px;
+    padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 15px;
     margin-bottom: 60px;
     margin-left: 32px;
-    margin-right: 12px;
+    margin-right: 32px;
     animation-duration: 12ms;
 }
 .container {

@@ -1,0 +1,42 @@
+.containers {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 10vh;
+    background-color: #fff;
+  }
+  
+  
+  .nav-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .left-item {
+    display: flex;
+  }
+  
+  .left-item a {
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  .im{
+    margin-left: 30px;
+    margin-top: 2px;
+  }
+  .more{
+    
+        margin-top: 10px;
+        font-size: 18px;
+        line-height: 1.5;
+        margin-left: 2%;
+        margin-right: 2%;
+      
+  }
+  donate{
+    background-color: #4CAF50;
+    color: white;
+    float: right;
+  }
