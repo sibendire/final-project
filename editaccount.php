@@ -1,75 +1,78 @@
 <?php
 session_start();
 include("php/config.php");
- if(!isset($_SESSION['valid'])){
-     reader("Location:login.php")
- }
+
+if (!isset($_SESSION['valid'])) {
+    header("Location: login.php");
+    exit(); // Terminate script execution after redirection
+}
+
+if (isset($_POST['submit'])) {
+    // Process form submission
+    $userName = $_POST['userName'];
+    $email = $_POST['email'];
+    $dateOfBirth = $_POST['dateOfBirth'];
+
+    // Check if 'Id' key exists in the session array before accessing it
+    $id = isset($_SESSION['Id']) ? $_SESSION['Id'] : null;
+    
+    if ($id) {
+        // Use prepared statement to prevent SQL injection
+        $edit_query = mysqli_prepare($con, "UPDATE users SET Username=?, Email=?, Dateofbirth=? WHERE Id=?");
+
+        if ($edit_query) {
+            mysqli_stmt_bind_param($edit_query, "sssi", $userName, $email, $dateOfBirth, $id);
+            mysqli_stmt_execute($edit_query);
+
+            if (mysqli_stmt_affected_rows($edit_query) > 0) {
+                echo "<div class='message'>
+                    <p>You have updated successfully</p>
+                    </div><br>";
+                echo "<a href='home.php'><button class='btn'>Go home</button></a>";
+            } else {
+                echo "Error updating record: " . mysqli_stmt_error($edit_query);
+            }
+
+            mysqli_stmt_close($edit_query);
+        } else {
+            echo "Error preparing statement: " . mysqli_error($con);
+        }
+    } else {
+        echo "User ID not found in session.";
+    }
+} else {
+    // Display form for editing profile
+    $id = isset($_SESSION['Id']) ? $_SESSION['Id'] : null;
+
+    if ($id) {
+        $query = mysqli_query($con, "SELECT * FROM users WHERE Id=$id");
+
+        if ($query) {
+            $results = mysqli_fetch_assoc($query);
+            $res_Uname = $results['Username'];
+            $res_Email = $results['Email'];
+            $res_Birth = $results['Dateofbirth'];
+        } else {
+            echo "Error fetching user data: " . mysqli_error($con);
+        }
+    } else {
+        echo "User ID not found in session.";
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<h2>Modal Login Form</h2>
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Edit Account</title>
 </head>
 <body>
-<?php
-if(isset($_POST['submit'])){
-    $userName = $_POST['userName'];
-    $email = $_POST['email'];
-    $dateOfBirth = $_POST['dateOfBirth'];
-
-    $id = $_SESSION['Id'];
-    $edit_query = mysqli_query($con,"UPDATE users SET Username='$userName',Email='$email',Dateofbirth='$dateOfBirth' WHERE Id=$id") or die("Error occured please!");
-    if($edit_query){
-        echo  "<div class = 'message'>
-        <p> You have updated  successfully</p>
-        </div> <br>";
-        echo "<a href = 'home.php'> <button class = 'btn'>Go home</button>";
-
-    }
-}
-else{
-    $id = $_SESSION['id'];
-    $query = mysqli_query($con,"SELECT*FROM users WHERE Id=$id");
-    while($results = mysqli_fetch_assoc($query)){
-        $res_Uname = $results['Username'];
-        $res_Email = $results['Email'];
-        $res_Birth = $results['Dateofbirth'];
-    }
-?>
-  <form action="" method="post">
-    <div class="container">
-        <h1>Change profile</h1>
-        <p>Please fill in this form to update  your  account.</p>
-
-        <label for="userName">Username</label>
-        <input type="text" placeholder="Enter Username" name="userName" id="username" value="<?php echo $res_Uname;?>" required>
-
-        <label for="email">Email</label>
-        <input type="text" placeholder="Enter Email" name="email" value="<?php echo $res_Email;?>" required>
-
-        <label for="dateOfBirth">Date of birth</label>
-        <input type="date" placeholder="Enter date of birth" name="dateOfBirth" value="<?php echo $res_Birth;?>" required>
-
-        <label for="psw">Password</label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-        </label>
-
-        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-
-        <div class="clearfix">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <button type="submit" class="signupbtn">update</button>
-        </div>
-    </div>
-</form> 
-    <?php}?>
+    <form action="" method="post">
+        <!-- Form fields and HTML structure -->
+    </form>
 </body>
 </html>
+
+<?php } ?>

@@ -1,86 +1,76 @@
+<?php
+session_start();
+
+// Include the file that establishes the database connection and defines $con
+include("php/config.php");
+
+if (!isset($_SESSION['Id'])) {
+    echo "User ID not found in session.";
+    exit(); // Exit if user ID is not set
+}
+
+if (isset($_POST['submit'])) {
+    // Process form submission
+    $doneeName = $_POST['doneeName'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+
+    $id = $_SESSION['Id'];
+    $edit_query = mysqli_query($con, "UPDATE donee SET DoneeName='$doneeName', Email='$email', Phone='$phone', Address='$address' WHERE Id=$id") or die("Error occurred please!");
+
+    if ($edit_query) {
+        echo "<div class='message'>
+            <p>You have updated successfully</p>
+            </div><br>";
+        echo "<a href='home.php'><button class='btn'>Go home</button></a>";
+    }
+} else {
+    $id = $_SESSION['Id'];
+    $query = mysqli_query($con, "SELECT * FROM donee WHERE Id=$id");
+
+    if ($query) {
+        $results = mysqli_fetch_assoc($query);
+        $res_DoneeName = $results['DoneeName'];
+        $res_Email = $results['Email'];
+        $res_Phone = $results['Phone'];
+        $res_Address = $results['Address'];
+    } else {
+        echo "Error fetching user data: " . mysqli_error($con);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <link rel="stylesheet" href="donee.css">
-    <title>Donee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Edit Donee Profile</title>
 </head>
 <body>
-<?php
-if(isset($_POST['submit'])){
-    $userName = $_POST['doneeName'];
-    $email = $_POST['email'];
-    $item = $_POST['item'];
-    $number = $_POST['number'];
-    $date = $_POST['date'];
-    $address = $_POST['address'];
-    $contact = $_POST['contact'];
+    <form action="" method="post">
+        <div class="container">
+            <h1>Edit Donee Profile</h1>
+            <p>Please fill in this form to update your profile.</p>
 
-    $id = $_SESSION['Id'];
-    $edit_query = mysqli_query($con,"UPDATE donee SET Doneename='$doneeName',Email='email'
-    ,Item='$item',Number='$number',Date='$date',Address='$address',Contact='$contact' WHERE Id=$id") or die("Error occured please!");
-    if($edit_query){
-        echo  "<div class = 'message'>
-        <p> You have updated  successfully</p>
-        </div> <br>";
-        echo "<a href = 'home.php'> <button class = 'btn'>Go home</button>";
+            <label for="doneeName">Donee Name</label>
+            <input type="text" placeholder="Enter Donee Name" name="doneeName" value="<?php echo $res_DoneeName; ?>" required>
 
-    }
-}
-else{
-    $id = $_SESSION['id'];
-    $query = mysqli_query($con,"SELECT*FROM donee WHERE Id=$id");
-    while($results = mysqli_fetch_assoc($query)){
-        $res_Uname = $results['Username'];
-        $res_Email = $results['Email'];
-        $res_Items = $results['Item'];
-        $res_Number = $results['Number'];
-        $res_Date = $results['Date'];
-        $res_Address = $results['Address'];
-        $res_Contact = $results['Contact'];
+            <label for="email">Email</label>
+            <input type="email" placeholder="Enter Email" name="email" value="<?php echo $res_Email; ?>" required>
 
+            <label for="phone">Phone</label>
+            <input type="text" placeholder="Enter Phone" name="phone" value="<?php echo $res_Phone; ?>" required>
 
-    }
-?>
-    <p class="paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit
-         Sit commodi repellendus adipisci sunt dolorem quis libero
-          provident dicta modi ratione iste in quaerat, beatae quibusdam
-         cum expedita! Distinctio, exercitationem illo?</p>
-         <div class="donation">
-         <form action="" method="post">
-            <div class="container">
-                <h1>Donee</h1>
-                <p>Please fill in this form  to post your reqest</p>
-        
-                <label for="doneeName">Donee name</label>
-                <input type="text" placeholder="Enter Deneename" name="doneeName" required>
-        
-                <label for="email">Email</label>
-                <input type="text" placeholder="Enter Email" name="email" required>
-        
-                <label for="items">Item name donated</label>
-                <input type="text" placeholder="Enter item name" name="items" required>
-        
-                <label for="number">Enter number of items donated</label>
-                <input type="number" placeholder="Number of items donate" name="number" required>
-        
-                <label for="date">Enter the date of Donation</label>
-                <input type="datetime" placeholder="chose the date" name="date" required>
-                  
-                <label for="address">Enter your location</label>
-                <input type="text" placeholder="Enter location" name="address" required>
+            <label for="address">Address</label>
+            <textarea placeholder="Enter Address" name="address" required><?php echo $res_Address; ?></textarea>
 
-                <label for="contact">Please Enter your contact number</label>
-                <input type="number" placeholder="Number of items donate" name="contact" required>
-                   
-                <div class="clearfix">
-                    <button type="button" class="cancelbtn">Cancel</button>
-                    <button type="submit" class="signupbtn">update</button>
-                </div>
+            <div class="clearfix">
+                <button type="button" class="cancelbtn">Cancel</button>
+                <button type="submit" class="signupbtn" name="submit">Update</button>
             </div>
-        </form> 
-    </div>
-    <?php}?>
+        </div>
+    </form>
 </body>
 </html>
+<?php } ?>
