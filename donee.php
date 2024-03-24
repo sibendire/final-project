@@ -44,7 +44,7 @@ if(isset($_POST['submit'])){
          <div class="donation">
          <form action="" method="post">
             <div class="container">
-                <h1>Donee</h1>
+                <h1>Donee's Profile</h1>
                 <p>Please fill in this form  to post your request</p>
         
                 <label for="doneeName">Donee name</label>

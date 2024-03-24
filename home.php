@@ -13,7 +13,9 @@ if (!isset($_SESSION['valid'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/contact.css">
     <title>Home</title>
+    <title><img src="Images/1.jpg  " alt=""></title>
 </head>
 <body>
   
@@ -28,6 +30,9 @@ if (!isset($_SESSION['valid'])) {
                 <a href="editaccount.php">Update profile</a>
                 <a href="editdonation.php">Edit Donor</a>
                 <a href="editdonee.php">Edit Donee</a>
+                <a href="contact.php">Contact</a>
+                <a href="admin.php">Admin</a>
+
             </div>
         </nav>
     </div>
@@ -55,6 +60,33 @@ if (!isset($_SESSION['valid'])) {
         <!-- <p style="font-size: 19px;"> The basic concept of this project  Food Waste Management is to collect theexcess/leftover food from donors such as hotels, restaurants, marriage halls, etc and distribute to  the  needy people .
         </p> -->
         <br>
+        <!-- <div class="card">
+  <img src="/w3images/team2.jpg" alt="John" style="width:100%">
+  <h1>John Doe</h1>
+  <p class="title">CEO & Founder, Example</p>
+  <p>Harvard University</p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a>  
+    <a href="#"><i class="fa fa-linkedin"></i></a>  
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+  </div>
+  <p><button>Contact</button></p>
+</div>
+<div class="card">
+  <img src="/w3images/team2.jpg" alt="John" style="width:100%">
+  <h1>John Doe</h1>
+  <p class="title">CEO & Founder, Example</p>
+  <p>Harvard University</p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a>  
+    <a href="#"><i class="fa fa-linkedin"></i></a>  
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+  </div> -->
+  <p><button>Contact</button></p>
+</div>
+
     </div>
 
     <!-- FOOTER SECTION -->

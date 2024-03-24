@@ -4,41 +4,54 @@ session_start();
 // Include the file that establishes the database connection and defines $con
 include("php/config.php");
 
-if (!isset($_SESSION['Id'])) {
-    echo "User ID not found in session.";
-    exit(); // Exit if user ID is not set
+// Check if user is logged in and session variables are set
+if (!isset($_SESSION['valid']) || !isset($_SESSION['userName']) || !isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit(); // Stop script execution after redirect
 }
 
+// Process form submission if the 'submit' button is clicked
 if (isset($_POST['submit'])) {
-    // Process form submission
+    // Retrieve form data
     $doneeName = $_POST['doneeName'];
     $email = $_POST['email'];
-    $phone = $_POST['phone'];
+    $item = $_POST['item'];
+    $number = $_POST['number'];
+    $date = $_POST['date'];
     $address = $_POST['address'];
+    $contact = $_POST['contact'];
 
-    $id = $_SESSION['Id'];
-    $edit_query = mysqli_query($con, "UPDATE donee SET DoneeName='$doneeName', Email='$email', Phone='$phone', Address='$address' WHERE Id=$id") or die("Error occurred please!");
+    // Update donee information in the database
+    $id = $_SESSION['id'];
+    $edit_query = mysqli_query($con, "UPDATE donee SET DoneeName='$doneeName', Email='$email', Item='$item', Number='$number', Date='$date', Address='$address', Contact='$contact' WHERE Id=$id") or die("Error occurred please!");
 
+    // Display success message after update
     if ($edit_query) {
         echo "<div class='message'>
             <p>You have updated successfully</p>
             </div><br>";
         echo "<a href='home.php'><button class='btn'>Go home</button></a>";
     }
-} else {
-    $id = $_SESSION['Id'];
-    $query = mysqli_query($con, "SELECT * FROM donee WHERE Id=$id");
+}
 
-    if ($query) {
-        $results = mysqli_fetch_assoc($query);
-        $res_DoneeName = $results['DoneeName'];
-        $res_Email = $results['Email'];
-        $res_Phone = $results['Phone'];
-        $res_Address = $results['Address'];
-    } else {
-        echo "Error fetching user data: " . mysqli_error($con);
-    }
+// Fetch current donee information from the database
+$id = $_SESSION['id'];
+$query = mysqli_query($con, "SELECT * FROM donee WHERE Id=$id");
+
+if ($query) {
+    $results = mysqli_fetch_assoc($query);
+    $res_DoneeName = $results['DoneeName'];
+    $res_Email = $results['Email'];
+    $res_Item = $results['Item'];
+    $res_Number = $results['Number'];
+    $res_Date = $results['Date'];
+    $res_Address = $results['Address'];
+    $res_Contact = $results['Contact'];
+} else {
+    echo "Error fetching user data: " . mysqli_error($con);
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,11 +72,20 @@ if (isset($_POST['submit'])) {
             <label for="email">Email</label>
             <input type="email" placeholder="Enter Email" name="email" value="<?php echo $res_Email; ?>" required>
 
-            <label for="phone">Phone</label>
-            <input type="text" placeholder="Enter Phone" name="phone" value="<?php echo $res_Phone; ?>" required>
+            <label for="item">Item</label>
+            <input type="text" placeholder="Enter Item" name="item" value="<?php echo $res_Item; ?>" required>
+
+            <label for="number">Number</label>
+            <input type="text" placeholder="Enter Number" name="number" value="<?php echo $res_Number; ?>" required>
+
+            <label for="date">Date</label>
+            <input type="date" placeholder="Enter Date" name="date" value="<?php echo $res_Date; ?>" required>
 
             <label for="address">Address</label>
-            <textarea placeholder="Enter Address" name="address" required><?php echo $res_Address; ?></textarea>
+            <input type="text" placeholder="Enter Address" name="address" value="<?php echo $res_Address; ?>" required>
+
+            <label for="contact">Contact</label>
+            <input type="text" placeholder="Enter Contact" name="contact" value="<?php echo $res_Contact; ?>" required>
 
             <div class="clearfix">
                 <button type="button" class="cancelbtn">Cancel</button>
@@ -73,4 +95,3 @@ if (isset($_POST['submit'])) {
     </form>
 </body>
 </html>
-<?php } ?>

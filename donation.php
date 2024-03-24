@@ -50,7 +50,7 @@
          <div class="donation">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="container">
-                    <h1>Profile</h1>
+                    <h1>Donor's Profile</h1>
                     <p>Please fill in this form.</p>
                 
                     <label for="donorName">Username</label>
@@ -83,6 +83,7 @@
                     </div>
                 </div>
             </form> 
+
         </div>
     <?php } ?>  
 </body>

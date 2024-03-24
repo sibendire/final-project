@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Registration</title>
+    <title>Admin</title>
 </head>
 <body>
 <?php
@@ -13,12 +13,11 @@ include("php/config.php");
 if(isset($_POST['submit'])){
     $userName = mysqli_real_escape_string($con, $_POST['userName']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
-    $number = mysqli_real_escape_string($con, $_POST['number']);
     $psw = mysqli_real_escape_string($con, $_POST['psw']);
     $dateOfBirth = mysqli_real_escape_string($con, $_POST['dateOfBirth']);
 
     // Check if the email is already registered
-    $verify_query = mysqli_query($con, "SELECT Email FROM users WHERE Email='$email'");
+    $verify_query = mysqli_query($con, "SELECT Email FROM admins WHERE Email='$email'");
     if(mysqli_num_rows($verify_query) > 0){
         echo "<div class='message'>
         <p>This email is already in use. Please try another one.</p>
@@ -29,7 +28,7 @@ if(isset($_POST['submit'])){
         $hashedPsw = password_hash($psw, PASSWORD_DEFAULT);
 
         // Insert new user into the database
-        $insert_query = "INSERT INTO users(Username, Email,Number, Dateofbirth, Psw) VALUES('$userName','$email','$number','$dateOfBirth','$hashedPsw')";
+        $insert_query = "INSERT INTO admins(Username, Email, Dateofbirth, Psw) VALUES('$userName','$email','$dateOfBirth','$hashedPsw')";
         if(mysqli_query($con, $insert_query)){
             echo "<div class='message'>
             <p>Your account has been created successfully.</p>
@@ -43,17 +42,14 @@ if(isset($_POST['submit'])){
 ?>
     <form action="" method="post">
         <div class="container">
-            <h1>Sign Up</h1>
-            <p>Please fill in this form to create an account.</p>
+            <h1>Sign Up Admin</h1>
+            <p>Please fill in this form to create admin account.</p>
 
             <label for="userName">Username</label>
             <input type="text" placeholder="Enter Username" name="userName" required>
 
             <label for="email">Email</label>
             <input type="email" placeholder="Enter Email" name="email" required>
-
-            <label for="number">Contact number</label>
-            <input type="number" placeholder="Enter phone number" name="number" required>
 
             <label for="dateOfBirth">Date of birth</label>
             <input type="date" name="dateOfBirth" required>
