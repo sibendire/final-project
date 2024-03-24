@@ -1,136 +1,192 @@
-/* Resetting default margin and padding */
+/* Reset default browser styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body styles */
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
-    line-height: 1.6; /* Improved line height for better readability */
+    background-color: #f2f2f2;
+    line-height: 1.6;
 }
 
-/* Header styles */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Container styles */
 .containers {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+/* Navigation styles */
+.nav-bar {
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
-}
-
-.nav-bar {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 .nav-bar a {
     color: #fff;
-    text-decoration: none;
-    padding: 10px;
-    transition: background-color 0.3s ease;
+    margin-right: 20px; 
 }
 
-.nav-bar a:hover {
+/* Image styles */
+.im {
+    text-align: center;
+    margin: 20px 0;
+}
+/* Image container styles */
+.image-container {
+    position: relative;
+    width: 100%; /* Adjust as needed */
+    height: 400px; /* Adjust as needed */
+    overflow: hidden;
+    /* margin-left: 22px; */
+}
+
+/* Image styles */
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Overlay styles */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* Text styles */
+.overlay .text {
+    padding: 20px;
+}
+
+/* Hover effect */
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+
+/* Button styles */
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
     background-color: #555;
 }
 
-/* Main content styles */
-.im {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.more {
-    margin: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.photo {
-    text-align: center;
-    margin-top: 20px;
-}
-
+/* Card styles */
 .wrapper {
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap; /* Added flex-wrap to wrap items in smaller screens */
-    margin-top: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
 }
 
-.box {
-    flex: 1;
-    margin: 10px;
-    max-width: 100%; /* Limiting box width for better arrangement */
+.card {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-content {
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.card-content h3 {
+    margin-top: 0;
 }
 
 /* Footer styles */
 .footer {
-    background-color: hsl(0, 19%, 91%);
+    background-color: #333;
     color: #fff;
-    padding: 20px 0;
+    padding: 20px;
     text-align: center;
-    position: relative; /* Added position relative for footer stacking */
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .footer-left,
 .footer-center,
 .footer-right {
-    flex: 1;
+    margin-bottom: 20px;
 }
 
-.footer-left p,
-.footer-center p,
-.footer-right p {
-    margin-bottom: 10px;
+.footer-left span {
+    font-weight: bold;
 }
 
-.social {
+.sociallist {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.sociallist ul {
     list-style-type: none;
     padding: 0;
-    text-align: center;
-    margin-top: 20px;
+    display: flex;
 }
 
-.social li {
-    display: inline-block;
+.sociallist ul li {
     margin-right: 10px;
 }
 
-.social li a {
+.sociallist ul li a {
     color: #fff;
-    transition: color 0.3s ease;
 }
 
-.social li a img {
-    width: 30px;
-    height: auto;
-}
-
-.social li a:hover {
-    color: #ccc;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    .wrapper {
-        flex-direction: column; /* Stack boxes vertically on smaller screens */
-        align-items: center; /* Center items horizontally */
+/* Responsive styles */
+@media (max-width: 768px) {
+    .nav-bar {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .box {
-        max-width: 100%; /* Allow boxes to take full width on smaller screens */
+    .nav-bar a {
+        margin: 10px 0;
+    }
+
+    .card {
+        width: calc(50% - 20px);
     }
 }

@@ -40,10 +40,15 @@ if (!isset($_SESSION['valid'])) {
     <div class="im">
         <h2>HTML Image</h2>
     </div>
-    <img src="Images/needy5.jpg" alt="Trulli" width="850" height="400px">
-    <div class="more">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque molestiae, doloremque officiis expedita quia, pariatur sapiente voluptatibus repudiandae reprehenderit repellat omnis nisi ab possimus dolore commodi unde minus, error est!
+    <div class="image-container">
+    <img src="Images/needy5.jpg" alt="Trulli">
+    <div class="overlay">
+        <div class="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque molestiae, doloremque officiis expedita quia, pariatur sapiente voluptatibus repudiandae reprehenderit repellat omnis nisi ab possimus dolore commodi unde minus, error est!
+        </div>
     </div>
+</div>
+
 
     <button type="donate">Donate</button>
     <div class="photo">
@@ -53,10 +58,29 @@ if (!isset($_SESSION['valid'])) {
         <p style="font-size: 28px; text-align: center;">"Look what we can do together."</p>
         <br>
         <div class="wrapper">
-            <div class="box"><img src="images/needy1.jpg" alt=""></div>
-            <div class="box"><img src="images/needy5.jpg" alt=""></div>
-            <div class="box"><img src="images/needy7.jpg" alt=""></div>
+    <div class="card">
+        <img src="images/needy1.jpg" alt="">
+        <div class="card-content">
+            <h3>Card 1 Title</h3>
+            <p>Description for card 1.</p>
         </div>
+    </div>
+    <div class="card">
+        <img src="images/needy5.jpg" alt="">
+        <div class="card-content">
+            <h3>Card 2 Title</h3>
+            <p>Description for card 2.</p>
+        </div>
+    </div>
+    <div class="card">
+        <img src="images/needy7.jpg" alt="">
+        <div class="card-content">
+            <h3>Card 3 Title</h3>
+            <p>Description for card 3.</p>
+        </div>
+    </div>
+</div>
+
         <!-- <p style="font-size: 19px;"> The basic concept of this project  Food Waste Management is to collect theexcess/leftover food from donors such as hotels, restaurants, marriage halls, etc and distribute to  the  needy people .
         </p> -->
         <br>

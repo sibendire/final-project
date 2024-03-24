@@ -1,57 +1,98 @@
-body{
-    margin: px;
-    padding: 0px;
-}
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 200px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-  
-}
-
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}
-label {
-  display: block;
-  margin-bottom: 5px;
-  
-}
-
-input[type="text"],
-input[type="number"],
-input[type="email"] {
-  width: calc(100% - 22px);
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+h3{
+  max-width: 700px;
+  margin: 12px auto;
+  margin-left: 30px;
+  font-weight: 600px;
+  font-size: 40px;
+  color: #a366aa;
+}
+.container {
+  display: flex;
+  justify-content:space-evenly; /* Adjust as needed */
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.card {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card .box {
+  margin-bottom: 20px;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.card h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-bottom: 10px;
+}
+
+.social-icons a {
+  color: #333;
+  margin: 0 5px;
+}
+
+.form-container {
+  max-width: 700px;
+  margin: 12px auto;
+  margin-left: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #555;
+}
