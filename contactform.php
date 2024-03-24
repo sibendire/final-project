@@ -8,8 +8,9 @@
 </head>
 <body>
 <h3>For more information, fill out this form</h3>
-<form action="post">
+<form action="https://api.web3forms.com/submit" method="POST">
     <div class="form-container">
+    <input type="hidden" name="access_key" value="f2f7ec69-bdc3-41e8-b5e7-bcd9ac224604">
         <label for="name">Provide your name</label>
         <input type="text" placeholder="Enter name" name="name" required>
 
