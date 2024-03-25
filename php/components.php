@@ -26,3 +26,17 @@ function components($itemname, $itemnumber, $itemimage) {
 }
 
 ?>
+<?php
+function getData($conn){
+    // SQL query
+    $sql = "SELECT * FROM items;";
+    $results = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($results) > 0){
+        return $results;
+    }
+}
+?>
+
+
+
