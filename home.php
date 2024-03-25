@@ -32,6 +32,7 @@ if (!isset($_SESSION['valid'])) {
                 <a href="editdonee.php">Edit Donee</a>
                 <a href="contact.php">Contact</a>
                 <a href="admin.php">Admin</a>
+                <a href="index.php">Product to donate</a>
 
             </div>
         </nav>
