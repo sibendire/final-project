@@ -1,6 +1,6 @@
 <?php
 
-function components($itemname, $itemnumber, $itemimage) {
+function components($itemname, $itemnumber, $itemimage,$itemid) {
     echo "
     <div class=\"col-md-3 small-cd-6 my-3 my-md-3\">
         <form action=\"index.php\" method=\"post\">
@@ -19,6 +19,7 @@ function components($itemname, $itemnumber, $itemimage) {
                     <small><s class=\"text-secondary\">$43</s></small>
                     <h5 class=\"number\">$itemnumber</h5>
                     <button type=\"submit\" name=\"add\">Add</button>
+                    <input type='hidden'name='iten_id' value='itemid'>
                 </div>
             </div>
         </form>

@@ -1,4 +1,6 @@
 <?php
+// Start session
+session_start();
 require_once('./php/components.php');
 
 // Establish database connection
@@ -17,6 +19,32 @@ if ($conn->connect_error) {
 // Call getData function from components.php
 $results = getData($conn);
 
+if (isset($_POST['add'])) {
+    if (isset($_SESSION['card'])) {
+        $item_array_id = array_column($_SESSION['card'], "item_id");
+        print_r($item_array_id);
+        if (in_array($_POST['item_id'], $item_array_id)) {
+            echo "<script> alert('Item already picked to be donated.')</script>";
+            echo "<script>window.location ='index.php'</script>";
+        } else {
+            // Handle adding item to session
+           $count = count($_SESSION['card']);
+           $item_array = array(
+            'item_id' => $_POST['item_id']
+        );
+        $_SESSION['card']['$count'] = $item_array;
+       // print_r($_SESSION['card']);
+        }
+    } else {
+        $item_id = "unique_id"; // Define a unique identifier for the item
+        $item_array = array(
+            'item_id' => $_POST['item_id']
+        );
+        // Create new session variable
+        $_SESSION['card'][0] = $item_array;
+        print_r($_SESSION['card']);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +59,9 @@ $results = getData($conn);
     <title>Document</title>
 </head>
 <body>
+    <?php
+    require_once("header.php")
+    ?>
     <div class="container">
         <div class="row text-center py-5">
             <?php
@@ -38,7 +69,7 @@ $results = getData($conn);
             if ($results && $results->num_rows > 0) {
                 // Fetch data from the result set and display using components function
                 while ($row = $results->fetch_assoc()) {
-                    components($row['itemname'], $row['itemnumber'], $row['itemimage']);
+                    components($row['itemname'], $row['itemnumber'], $row['itemimage'],$row['id']);
                 }
             } else {
                 echo "No data found";
