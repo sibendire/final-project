@@ -1,6 +1,6 @@
 <?php
 
-function components($itemname, $itemnumber, $itemimage,$itemid) {
+function components($itemname, $itemnumber, $itemimage, $itemid) {
     echo "
     <div class=\"col-md-3 small-cd-6 my-3 my-md-3\">
         <form action=\"index.php\" method=\"post\">
@@ -19,15 +19,41 @@ function components($itemname, $itemnumber, $itemimage,$itemid) {
                     <small><s class=\"text-secondary\">$43</s></small>
                     <h5 class=\"number\">$itemnumber</h5>
                     <button type=\"submit\" name=\"add\">Add</button>
-                    <input type='hidden'name='iten_id' value='itemid'>
+                    <input type='hidden' name='item_id' value='$itemid'>
                 </div>
             </div>
         </form>
     </div>";
 }
 
-?>
-<?php
+function cardcomponent($itemimage, $itemname, $itemnumber){
+    $element = "
+    <form action='card.php' method='get' class='cart-items'>
+        <div class='border rounded'>
+            <div class='row bg-white'>
+                <div class='col-md-3 pl-0'>
+                    <img src='$itemimage' alt='image1' class='img-fluid'>
+                </div>
+                <div class='col-md-6'>
+                    <h5 class='pt-2'>$itemname</h5>
+                    <small class='text-secondary'>Donor: Joshua</small>
+                    <h5 class='pt-2'>$itemnumber</h5>
+                    <button type='submit' class='btn btn-warning'>Save</button>
+                    <button type='submit' class='btn btn-danger mx-2' name='remove'>Remove</button>
+                </div>
+                <div class='col-md-3 py-5'>
+                    <div>
+                        <button type='button' class='btn bg-light border rounded-circle'><i class='fas fa-minus'></i></button>
+                        <input type='text' value='1' class='form-control w-25 d-inline'>
+                        <button type='button' class='btn bg-light border rounded-circle'><i class='fas fa-plus'></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>";
+    echo $element;
+}
+
 function getData($conn){
     // SQL query
     $sql = "SELECT * FROM items;";
@@ -37,7 +63,5 @@ function getData($conn){
         return $results;
     }
 }
+
 ?>
-
-
-
